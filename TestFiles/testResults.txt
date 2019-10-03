@@ -1,0 +1,19 @@
+3.Comparing 2 files 1 different symbol: 
+ oneSymbol.txt file hash: jZAScq0ZXJ6iFhwVKIJumsrbBAZR7tqY 
+ oneSymbol2.txt file hash: p8Ev1E8iuSENeIDIhhpxJ2Aa5urDuQ82 - PASS 
+--------------------------------------------------------- 
+2.Comparing 2 files with 100 000 random symbols: 
+ randomSymbols.txt file || hash: iC5eea0aZa9ARuLb2a6R477DuEA6XJrV 
+ randomSymbols2.txt file hash: dv6k2mC0UEc51auLE5hn1xeeri9ahxbz - PASS 
+--------------------------------------------------------- 
+Same strings while reading million random string pairs: 0 
+--------------------------------------------------------- 
+Elapsed time while reading konstitucija: 195 ms 
+--------------------------------------------------------- 
+Same strings while reading 100 thousand same strings with 1 symbol different: 0 
+ % Difference in strings: Max - 0 Min - 0 Average - 0 
+--------------------------------------------------------- 
+1.Comparing 2 files with 100 000 symbols each and one symbol different: 
+ manySymbols1Difference.txt file hash: 7epAZAphrLPeeID5qSA6CeIEBepUuA1z 
+ manySymbols1Difference2.txt file hash: RI8beqniuE2VBJt1zRx0EBerBPjAfEVq - PASS 
+--------------------------------------------------------- 

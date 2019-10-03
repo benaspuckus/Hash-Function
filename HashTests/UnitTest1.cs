@@ -4,6 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
+using System.Text;
 
 namespace HashTests
 {
@@ -118,7 +120,7 @@ namespace HashTests
 
                 var areEqual = string.Equals(hashValue1, hashValue2);
 
-                if (areEqual && !string.Equals(hashValue1, hashValue2))
+                if (areEqual && !string.Equals(words[0], words[1]))
                 {
                     var tempObject = Tuple.Create(hashValue1, hashValue2);
                     output.Add(tempObject);
@@ -145,15 +147,32 @@ namespace HashTests
             string[] lines = File.ReadAllLines(@"C:/temp/Files/manyStrings1SymbolDifferent.txt");
             var output = new List<Tuple<string, string>>();
             var counter = 0;
+
+            var differenceList = new List<double>();
+
             foreach (var line in lines)
             {
+                var difference = 0;
                 string[] words = line.Split(' ');
                 var hashValue1 = Program.Hash(words[0]);
                 var hashValue2 = Program.Hash(words[1]);
 
+                var hash1InBytes = Encoding.ASCII.GetBytes(hashValue1);
+                var hash2InBytes = Encoding.ASCII.GetBytes(hashValue2);
+
+                for (var i = 0; i < 32; i++)
+                {
+                    if (hash1InBytes[i] == hash2InBytes[i] && !string.Equals(words[0], words[1]))
+                    {
+                        difference++;
+                    }
+                }
+
+                differenceList.Add(difference / 32);
+
                 var areEqual = string.Equals(hashValue1, hashValue2);
 
-                if (areEqual && !string.Equals(hashValue1, hashValue2))
+                if (areEqual && !string.Equals(words[0], words[1]))
                 {
                     var tempObject = Tuple.Create(words[0], words[1]);
                     output.Add(tempObject);
@@ -161,7 +180,7 @@ namespace HashTests
                 }
             }
 
-            var result = $"Same strings while reading 100 thousand same strings with 1 symbol different: {counter} {Environment.NewLine}";
+            var result = $"Same strings while reading 100 thousand same strings with 1 symbol different: {counter} {Environment.NewLine} % Difference in strings: Max - {differenceList.Max()} Min - {differenceList.Max()} Average - {differenceList.Average()} {Environment.NewLine}";
             File.AppendAllText(@"C:/temp/Files/testResults.txt", result);
             foreach (var str in output)
             {
