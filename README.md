@@ -1,5 +1,5 @@
 # Hash-Function
-Hash Function 1st attempt
+
 ## Idėja
 
 Kadangi buvo patartina neskaityti kito hash'avimo pseudo ar bet kokio kito kodo, manasis gavosi liaudiškai tariant "bootleg'as". Funkcija "važiuoja" iteracija paremtu skaičiavimu t.y su kiekvienu vykdomu veiksmu, ar ciklo iteracija daugiklio reikšmė didėja po +1 arba kita *įhardcode'inta* reikšme.
@@ -52,9 +52,12 @@ Visi naudoti failai yra *įpush'inti* kartu su kodu. Algoritmui įgyvendinti nau
 | 0 | PASS |
 
 #### Rasta tokių pačių hash'ų tarp 100 000 porų string'ų su 1 simboliu skirtingu
-| Porų skaičius | Ar testas sėkmingas|
-| :--------------------: | :------------------------------: |
-| 0 | PASS |
+| Porų skaičius | Ar testas sėkmingas|Skirtingumas|
+| :--------------------: | :------------------------------: |:----------: |
+| 0 | PASS | Min - 0, Max - 0, Average - 0|
+
+#### Note
+Šita hash funkcija "atrodo" labai efektyvi, tačiau taip "atrodo" dėl to, jog baitų masyvas nėra konvertuojamas į šešioliktainį kodą, o tikrinamas dešimtainio kodo reikšmių lygmenyje, todėl dažnai "neapataikius" į intervalą, hasho baitų reikšmės yra perskaičiuojomos ir atrodo, kad algoritmas labai efektyviai veikia.
 
 
 
