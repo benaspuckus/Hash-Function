@@ -11,7 +11,7 @@ namespace HashFunction
         private static void Main(string[] args)
         {
             var output = new List<Tuple<string, string>>();
-            string searchPattern = "konstitucija.txt";
+            string searchPattern = "program.txt";
             string[] files = Directory.GetFiles(@"C:/temp/Files/", searchPattern);
 
             foreach (var i in files)
