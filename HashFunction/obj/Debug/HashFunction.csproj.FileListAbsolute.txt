@@ -5,3 +5,12 @@ C:\Users\bpuckus\source\repos\HashFunction\HashFunction\obj\Debug\HashFunction.c
 C:\Users\bpuckus\source\repos\HashFunction\HashFunction\obj\Debug\HashFunction.csproj.CoreCompileInputs.cache
 C:\Users\bpuckus\source\repos\HashFunction\HashFunction\obj\Debug\HashFunction.exe
 C:\Users\bpuckus\source\repos\HashFunction\HashFunction\obj\Debug\HashFunction.pdb
+C:\Users\bpuckus\Documents\GitHub\Hash-Function\HashFunction\bin\Debug\HashFunction.exe.config
+C:\Users\bpuckus\Documents\GitHub\Hash-Function\HashFunction\bin\Debug\HashFunction.exe
+C:\Users\bpuckus\Documents\GitHub\Hash-Function\HashFunction\bin\Debug\HashFunction.pdb
+C:\Users\bpuckus\Documents\GitHub\Hash-Function\HashFunction\bin\Debug\Newtonsoft.Json.dll
+C:\Users\bpuckus\Documents\GitHub\Hash-Function\HashFunction\bin\Debug\Newtonsoft.Json.xml
+C:\Users\bpuckus\Documents\GitHub\Hash-Function\HashFunction\obj\Debug\HashFunction.csprojAssemblyReference.cache
+C:\Users\bpuckus\Documents\GitHub\Hash-Function\HashFunction\obj\Debug\HashFunction.csproj.CopyComplete
+C:\Users\bpuckus\Documents\GitHub\Hash-Function\HashFunction\obj\Debug\HashFunction.exe
+C:\Users\bpuckus\Documents\GitHub\Hash-Function\HashFunction\obj\Debug\HashFunction.pdb
