@@ -43,7 +43,7 @@ namespace HashFunction
             Block latestBlock = GetLatestBlock();
             block.Index = latestBlock.Index + 1;
             block.PreviousHash = latestBlock.Hash;
-            block.Hash = block.CalculateHash();
+            block.Mine(this.Difficulty);
             Chain.Add(block);
         }
 
