@@ -13,21 +13,21 @@ namespace HashFunction
         public DateTime TimeStamp { get; set; }
         public string PreviousHash { get; set; }
         public string Hash { get; set; }
-        public string Data { get; set; }
+        public List<Transaction> Transactions { get; set; }
         public int Nonce { get; set; } = 0;
 
-        public Block(DateTime timeStamp, string previousHash, string data)
+        public Block(DateTime timeStamp, string previousHash, List<Transaction> transactions)
         {
             Index = 0;
             TimeStamp = timeStamp;
             PreviousHash = previousHash;
-            Data = data;
+            Transactions = transactions;
             Hash = CalculateHash();
         }
 
         public string CalculateHash()
         {
-            var data = $"{TimeStamp.ToString()}{PreviousHash}{Data}{Nonce}";
+            var data = $"{TimeStamp.ToString()}{PreviousHash}{Transactions}{Nonce}";
             var hash = HashFunction.GetHash(data);
 
             return hash;
