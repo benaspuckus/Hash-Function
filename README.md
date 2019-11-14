@@ -57,7 +57,7 @@ Visi naudoti failai yra *įpush'inti* kartu su kodu. Algoritmui įgyvendinti nau
 | 0 | PASS | Min - 0, Max - 0, Average - 0|
 
 #### Note
-Šita hash funkcija "atrodo" labai efektyvi, tačiau taip "atrodo" dėl to, jog baitų masyvas nėra konvertuojamas į šešioliktainį kodą, o tikrinamas dešimtainio kodo reikšmių lygmenyje, todėl dažnai "neapataikius" į intervalą, hasho baitų reikšmės yra perskaičiuojomos ir atrodo, kad algoritmas labai efektyviai veikia.
+Šita hash funkcija "atrodo" labai random, tačiau taip "atrodo" dėl to, jog baitų masyvas nėra konvertuojamas į šešioliktainį kodą, o tikrinamas dešimtainio kodo reikšmių lygmenyje, todėl dažnai "neapataikius" į intervalą, hasho baitų reikšmės yra perskaičiuojomos ir atrodo, kad algoritmas labai random.
 
 
 
