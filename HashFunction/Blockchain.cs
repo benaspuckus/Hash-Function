@@ -20,11 +20,11 @@ namespace HashFunction
         {
             Random rnd = new Random();
 
-            for (var i = 0; i < 1000; i++)
+            for (var i = 0; i < 10; i++)
             {
                 var name = $"user{i}";
                 var userHash = HashFunction.GetHash(name);
-                var balance = rnd.Next(100, 10000);
+                var balance = rnd.Next(100, 1000);
                 Users.Add(new User(name, userHash, balance));
             }
 
@@ -36,7 +36,7 @@ namespace HashFunction
                 Miners.Add(new User(name, userHash, balance));
             }
 
-            for (var i = 0; i < 1000; i++)
+            for (var i = 0; i < 100; i++)
             {
                 var senderIndex = rnd.Next(Users.Count);
                 var receiverIndex = rnd.Next(Users.Count);
@@ -139,9 +139,28 @@ namespace HashFunction
             var iteration = 0;
             while(PendingTransactions.Count > 1)
             {
-                var transactions = PendingTransactions.Take(100).ToList();
-                Block block = new Block(DateTime.Now, GetLatestBlock().Hash, transactions);
+
+                var transactions = PendingTransactions.Take(10).ToList();
+                var listOfInvalidTransactions = new List<Transaction>();
+
+
+                for (var i = 0; i < transactions.Count; i++)
+                {
+                    if(transactions[i].FromAddress != null) //if not a miner
+                    {
+                        var senderBalace = transactions[i].FromAddress.Balance;
+                        var amaountToSend = transactions[i].Amount;
+                        if (senderBalace < amaountToSend)
+                        {
+                            Console.WriteLine($"{transactions[i].FromAddress.Name} just tried to send more money than it has! Had {transactions[i].FromAddress.Balance}, tried to send {transactions[i].Amount}");
+                            listOfInvalidTransactions.Add(transactions[i]);
+                        }
+                    }
+                }
                 var count = transactions.Count;
+
+                var filteredTransactions = transactions.Except(listOfInvalidTransactions).ToList();
+                Block block = new Block(DateTime.Now, GetLatestBlock().Hash, filteredTransactions);
 
                 for (var i = 0; i < count; i++)
                 {
