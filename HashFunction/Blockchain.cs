@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HashFunction
 {
@@ -41,7 +39,7 @@ namespace HashFunction
                 var senderIndex = rnd.Next(Users.Count);
                 var receiverIndex = rnd.Next(Users.Count);
 
-                while(receiverIndex == senderIndex)
+                while (receiverIndex == senderIndex)
                 {
                     receiverIndex = rnd.Next(Users.Count);
                 }
@@ -53,8 +51,6 @@ namespace HashFunction
 
                 CreateTransaction(new Transaction(sender, receiver, amount));
             }
-
-
         }
 
         public Blockchain()
@@ -85,10 +81,40 @@ namespace HashFunction
 
         public void AddBlock(Block block)
         {
+            var iterationLimit = 1000;
+            var isHashFound = false;
             Block latestBlock = GetLatestBlock();
             block.Index = latestBlock.Index + 1;
             block.PreviousHash = latestBlock.Hash;
-            block.Mine(this.Difficulty);
+
+            var blockList = new List<Block>();
+            var time = DateTime.Now;
+
+            for (var i = 0; i < 5; i++)
+            {
+                blockList.Add(block);
+            }
+
+            var shuffledBlocks = blockList.OrderBy(a => Guid.NewGuid()).ToList();
+            while (!isHashFound)
+            {
+                foreach (var i in shuffledBlocks)
+                {
+                    isHashFound = block.Mine(this.Difficulty, iterationLimit);
+
+                    if (isHashFound)
+                    {
+                        break;
+                    }
+                }
+
+                if (!isHashFound)
+                {
+                    iterationLimit = iterationLimit + 500;
+                }
+            }
+
+            Console.WriteLine($"Block found with {iterationLimit} iteration limit");
             Chain.Add(block);
 
             CalculateUsersBalance(block.Transactions);
@@ -101,7 +127,7 @@ namespace HashFunction
                 var sender = i.FromAddress;
                 var receiver = i.ToAddress;
 
-                if(sender != null)
+                if (sender != null)
                 {
                     sender.SetBalance(-(i.Amount));
                 }
@@ -129,6 +155,7 @@ namespace HashFunction
             }
             return true;
         }
+
         public void CreateTransaction(Transaction transaction)
         {
             PendingTransactions.Add(transaction);
@@ -137,16 +164,14 @@ namespace HashFunction
         public void ProcessPendingTransactions()
         {
             var iteration = 0;
-            while(PendingTransactions.Count > 1)
+            while (PendingTransactions.Count > 1)
             {
-
                 var transactions = PendingTransactions.Take(10).ToList();
                 var listOfInvalidTransactions = new List<Transaction>();
 
-
                 for (var i = 0; i < transactions.Count; i++)
                 {
-                    if(transactions[i].FromAddress != null) //if not a miner
+                    if (transactions[i].FromAddress != null) //if not a miner
                     {
                         var senderBalace = transactions[i].FromAddress.Balance;
                         var amaountToSend = transactions[i].Amount;
@@ -157,6 +182,7 @@ namespace HashFunction
                         }
                     }
                 }
+
                 var count = transactions.Count;
 
                 var filteredTransactions = transactions.Except(listOfInvalidTransactions).ToList();
@@ -169,14 +195,12 @@ namespace HashFunction
                 }
 
                 AddBlock(block);
-                Console.WriteLine($"{iteration} block added");
                 Random rnd = new Random();
                 var minersIndex = rnd.Next(Miners.Count);
                 var miner = Miners[minersIndex];
                 CreateTransaction(new Transaction(null, miner, _reward));
                 iteration++;
             }
-            
         }
     }
 }

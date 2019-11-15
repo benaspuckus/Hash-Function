@@ -1,9 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HashFunction
 {
@@ -33,13 +29,26 @@ namespace HashFunction
             return hash;
         }
 
-        public void Mine(int difficulty)
+        public bool Mine(int difficulty, int iterationLimit)
         {
             var leadingZeros = new string('0', difficulty);
+            var iterations = 0;
             while (this.Hash == null || this.Hash.Substring(0, difficulty) != leadingZeros)
             {
                 this.Nonce++;
                 this.Hash = this.CalculateHash();
+                iterations++;
+                if (iterations >= iterationLimit)
+                    break;
+            }
+
+            if (this.Hash.Substring(0, difficulty) == leadingZeros)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
     }
