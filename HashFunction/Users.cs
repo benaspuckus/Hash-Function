@@ -20,7 +20,7 @@ namespace HashFunction
         }
         public void SetBalance(float payment)
         {
-            Balance = payment;
+            Balance += payment;
         }
     }
 }
