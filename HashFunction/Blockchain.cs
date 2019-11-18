@@ -26,7 +26,7 @@ namespace HashFunction
                 Users.Add(new User(name, userHash, balance));
             }
 
-            for (var i = 0; i < 100; i++)
+            for (var i = 0; i < 10; i++)
             {
                 var name = $"miner{i}";
                 var userHash = HashFunction.GetHash(name);
@@ -81,7 +81,7 @@ namespace HashFunction
 
         public void AddBlock(Block block)
         {
-            var iterationLimit = 1000;
+            var iterationLimit = 500;
             var isHashFound = false;
             Block latestBlock = GetLatestBlock();
             block.Index = latestBlock.Index + 1;
@@ -110,7 +110,7 @@ namespace HashFunction
 
                 if (!isHashFound)
                 {
-                    iterationLimit = iterationLimit + 500;
+                    iterationLimit = iterationLimit + 150;
                 }
             }
 
@@ -171,15 +171,20 @@ namespace HashFunction
 
                 for (var i = 0; i < transactions.Count; i++)
                 {
-                    if (transactions[i].FromAddress != null) //if not a miner
+                    var hash = HashFunction.GetHash($"{transactions[i].FromAddress?.ToString()}{transactions[i].ToAddress?.ToString()}{transactions[i].Amount}{transactions[i].DateCreated}");
+                    var senderBalace = transactions[i].FromAddress?.Balance;
+                    var amaountToSend = transactions[i].Amount;
+
+                    if (transactions[i].TransactionHash != hash)
                     {
-                        var senderBalace = transactions[i].FromAddress.Balance;
-                        var amaountToSend = transactions[i].Amount;
-                        if (senderBalace < amaountToSend)
-                        {
-                            Console.WriteLine($"{transactions[i].FromAddress.Name} just tried to send more money than it has! Had {transactions[i].FromAddress.Balance}, tried to send {transactions[i].Amount}");
-                            listOfInvalidTransactions.Add(transactions[i]);
-                        }
+                        Console.WriteLine($"Hashes are not equal!");
+                        listOfInvalidTransactions.Add(transactions[i]);
+                    }
+
+                    else if (senderBalace < amaountToSend)
+                    {
+                        Console.WriteLine($"{transactions[i].FromAddress?.Name} just tried to send more money than it has! Had {transactions[i].FromAddress?.Balance}, tried to send {transactions[i].Amount}");
+                        listOfInvalidTransactions.Add(transactions[i]);
                     }
                 }
 
@@ -193,6 +198,7 @@ namespace HashFunction
                     var transactionToRemove = transactions[i];
                     PendingTransactions.Remove(transactionToRemove);
                 }
+
 
                 AddBlock(block);
                 Random rnd = new Random();
