@@ -34,3 +34,7 @@ C:\Users\bpuckus\Documents\GitHub\Hash-Function\HashTests\obj\Debug\netcoreapp2.
 C:\Users\bpuckus\Documents\GitHub\Hash-Function\HashTests\obj\Debug\netcoreapp2.1\HashTests.csproj.CopyComplete
 C:\Users\bpuckus\Documents\GitHub\Hash-Function\HashTests\obj\Debug\netcoreapp2.1\HashTests.dll
 C:\Users\bpuckus\Documents\GitHub\Hash-Function\HashTests\obj\Debug\netcoreapp2.1\HashTests.pdb
+C:\Users\Ben\Documents\GitHub\Hash-Function\HashTests\obj\Debug\netcoreapp2.1\HashTests.csprojAssemblyReference.cache
+C:\Users\Ben\Documents\GitHub\Hash-Function\HashTests\obj\Debug\netcoreapp2.1\HashTests.csproj.CoreCompileInputs.cache
+C:\Users\Ben\Documents\GitHub\Hash-Function\HashTests\obj\Debug\netcoreapp2.1\HashTests.AssemblyInfoInputs.cache
+C:\Users\Ben\Documents\GitHub\Hash-Function\HashTests\obj\Debug\netcoreapp2.1\HashTests.AssemblyInfo.cs

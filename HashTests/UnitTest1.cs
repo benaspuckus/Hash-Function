@@ -1,4 +1,3 @@
-using HashFunction;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -22,7 +21,7 @@ namespace HashTests
             foreach (var i in files)
             {
                 var lines = File.ReadAllText(i);
-                var hashValue = Program.Hash(lines);
+                var hashValue = HashFunction.HashFunction.GetHash(lines);
                 var fileName = Path.GetFileName(i);
                 var tempObject = Tuple.Create(fileName, hashValue);
                 output.Add(tempObject);
@@ -46,7 +45,7 @@ namespace HashTests
             foreach (var i in files)
             {
                 var lines = File.ReadAllText(i);
-                var hashValue = Program.Hash(lines);
+                var hashValue = HashFunction.HashFunction.GetHash(lines);
                 var fileName = Path.GetFileName(i);
                 var tempObject = Tuple.Create(fileName, hashValue);
                 output.Add(tempObject);
@@ -70,7 +69,7 @@ namespace HashTests
             foreach (var i in files)
             {
                 var lines = File.ReadAllText(i);
-                var hashValue = Program.Hash(lines);
+                var hashValue = HashFunction.HashFunction.GetHash(lines);
                 var fileName = Path.GetFileName(i);
                 var tempObject = Tuple.Create(fileName, hashValue);
                 output.Add(tempObject);
@@ -95,7 +94,7 @@ namespace HashTests
             while ((line = file.ReadLine()) != null)
             {
                 watch.Start();
-                Program.Hash(line);
+                HashFunction.HashFunction.GetHash(line);
                 watch.Stop();
             }
 
@@ -115,8 +114,8 @@ namespace HashTests
             foreach (var line in lines)
             {
                 string[] words = line.Split(' ');
-                var hashValue1 = Program.Hash(words[0]);
-                var hashValue2 = Program.Hash(words[1]);
+                var hashValue1 = HashFunction.HashFunction.GetHash(words[0]);
+                var hashValue2 = HashFunction.HashFunction.GetHash(words[1]);
 
                 var areEqual = string.Equals(hashValue1, hashValue2);
 
@@ -154,8 +153,8 @@ namespace HashTests
             {
                 var difference = 0;
                 string[] words = line.Split(' ');
-                var hashValue1 = Program.Hash(words[0]);
-                var hashValue2 = Program.Hash(words[1]);
+                var hashValue1 = HashFunction.HashFunction.GetHash(words[0]);
+                var hashValue2 = HashFunction.HashFunction.GetHash(words[1]);
 
                 var hash1InBytes = Encoding.ASCII.GetBytes(hashValue1);
                 var hash2InBytes = Encoding.ASCII.GetBytes(hashValue2);

@@ -19,7 +19,7 @@ C:\Users\Ben\Documents\GitHub\Hash-Function\HashFunction\bin\Debug\HashFunction.
 C:\Users\Ben\Documents\GitHub\Hash-Function\HashFunction\bin\Debug\HashFunction.pdb
 C:\Users\Ben\Documents\GitHub\Hash-Function\HashFunction\bin\Debug\Newtonsoft.Json.dll
 C:\Users\Ben\Documents\GitHub\Hash-Function\HashFunction\bin\Debug\Newtonsoft.Json.xml
-C:\Users\Ben\Documents\GitHub\Hash-Function\HashFunction\obj\Debug\HashFunction.csprojAssemblyReference.cache
+C:\Users\Ben\Documents\GitHub\Hash-Function\HashFunction\obj\Debug\HashFunction.csproj.CoreCompileInputs.cache
 C:\Users\Ben\Documents\GitHub\Hash-Function\HashFunction\obj\Debug\HashFunction.csproj.CopyComplete
 C:\Users\Ben\Documents\GitHub\Hash-Function\HashFunction\obj\Debug\HashFunction.exe
 C:\Users\Ben\Documents\GitHub\Hash-Function\HashFunction\obj\Debug\HashFunction.pdb

@@ -18,6 +18,7 @@ namespace HashFunction
         {
             Random rnd = new Random();
 
+            //Generates Users
             for (var i = 0; i < 1000; i++)
             {
                 var name = $"user{i}";
@@ -26,6 +27,7 @@ namespace HashFunction
                 Users.Add(new User(name, userHash, balance));
             }
 
+            //Generates Miners
             for (var i = 0; i < 10; i++)
             {
                 var name = $"miner{i}";
@@ -34,11 +36,13 @@ namespace HashFunction
                 Miners.Add(new User(name, userHash, balance));
             }
 
+            //Generates random x number transactions
             for (var i = 0; i < 10000; i++)
             {
                 var senderIndex = rnd.Next(Users.Count);
                 var receiverIndex = rnd.Next(Users.Count);
 
+                //If receiver is same as sender
                 while (receiverIndex == senderIndex)
                 {
                     receiverIndex = rnd.Next(Users.Count);
@@ -53,6 +57,7 @@ namespace HashFunction
             }
         }
 
+        //Blockchain initialization
         public Blockchain()
         {
             InitializeChain();
@@ -83,10 +88,18 @@ namespace HashFunction
         {
             var iterationLimit = 500;
             var isHashFound = false;
+
             Block latestBlock = GetLatestBlock();
+
+            //Sets info for current block using previous block data
             block.Index = latestBlock.Index + 1;
             block.PreviousHash = latestBlock.Hash;
 
+            //Using merkle root algorythm calculates merkle root
+            var transactionHashes = block.Transactions.Select(x => x.TransactionHash).ToList();
+            block.MerkleRoot = MerkleTree.BuildMerkleRoot(transactionHashes);
+
+            //Creates temporary block list for miners to mine
             var blockList = new List<Block>();
             var time = DateTime.Now;
 
@@ -95,7 +108,10 @@ namespace HashFunction
                 blockList.Add(block);
             }
 
+            //Makes block order random
             var shuffledBlocks = blockList.OrderBy(a => Guid.NewGuid()).ToList();
+
+            //With each iteration, iteration limit is increased by x value untill someone manages to get correct hash
             while (!isHashFound)
             {
                 foreach (var i in shuffledBlocks)
@@ -117,6 +133,7 @@ namespace HashFunction
             Console.WriteLine($"Block found with {iterationLimit} iteration limit");
             Chain.Add(block);
 
+            //Calculates block transactions and calculates users current balance
             CalculateUsersBalance(block.Transactions);
         }
 
@@ -166,6 +183,7 @@ namespace HashFunction
             var iteration = 0;
             while (PendingTransactions.Count > 1)
             {
+                //How many transaction per block to take
                 var transactions = PendingTransactions.Take(150).ToList();
                 var listOfInvalidTransactions = new List<Transaction>();
 
@@ -175,12 +193,12 @@ namespace HashFunction
                     var senderBalace = transactions[i].FromAddress?.Balance;
                     var amaountToSend = transactions[i].Amount;
 
+                    //Catch if users are trying to send more than they have
                     if (transactions[i].TransactionHash != hash)
                     {
                         Console.WriteLine($"Hashes are not equal!");
                         listOfInvalidTransactions.Add(transactions[i]);
                     }
-
                     else if (senderBalace < amaountToSend)
                     {
                         Console.WriteLine($"{transactions[i].FromAddress?.Name} just tried to send more money than it has! Had {transactions[i].FromAddress?.Balance}, tried to send {transactions[i].Amount}");
@@ -193,17 +211,20 @@ namespace HashFunction
                 var filteredTransactions = transactions.Except(listOfInvalidTransactions).ToList();
                 Block block = new Block(DateTime.Now, GetLatestBlock().Hash, filteredTransactions);
 
+                //Removes invalid transactions
                 for (var i = 0; i < count; i++)
                 {
                     var transactionToRemove = transactions[i];
                     PendingTransactions.Remove(transactionToRemove);
                 }
 
-
+                //Adds block to chain and does the calculations
                 AddBlock(block);
                 Random rnd = new Random();
                 var minersIndex = rnd.Next(Miners.Count);
                 var miner = Miners[minersIndex];
+
+                //Adds "miner" transaction as a reward
                 CreateTransaction(new Transaction(null, miner, _reward));
                 iteration++;
                 Console.WriteLine($"{PendingTransactions.Count} Pending transactions left");

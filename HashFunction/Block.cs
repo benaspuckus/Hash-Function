@@ -9,6 +9,7 @@ namespace HashFunction
         public DateTime TimeStamp { get; set; }
         public string PreviousHash { get; set; }
         public string Hash { get; set; }
+        public string MerkleRoot { get; set; }
         public List<Transaction> Transactions { get; set; }
         public int Nonce { get; set; } = 0;
 
