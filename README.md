@@ -1,3 +1,17 @@
+# Blockchain
+
+## Kaip paleisti?
+
+Blockchain'as yra parašytas su c#, todėl papraščiausia būtų atsisiųsti Visual Studio ir užkrauti projektą per jį. Užkrovus spausti *start* ir blockchainas bus pradedamas kurti.
+
+## Kas vyksta?
+
+Pirmiausia yra sugeneruojama 1000 user'ų, 10 miner'ų ir sugeneruojamos transakcijų pool'as. Iš transakcijų poolo imama po 150 transakcijų, blokas yra kasamas ir atkasęs mineris "apdovanojamas" tam tikru rewardu, šiuo atveju 1 valiuta.
+
+![alt text](https://github.com/benaspuckus/Hash-Function/blob/master/Capture.JPG)
+
+Kol vyksta kasimas, konsolėje yra matoma likusių transakcijų skaičius, perspėjama jei kas bandė "pervesti" daugiau, nei turėjo ir su kiek iteracijų pavyko iškasti bloką (pradedama nuo 500)
+
 # Hash-Function
 
 ## Idėja
