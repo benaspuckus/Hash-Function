@@ -23,4 +23,3 @@ C:\Users\Ben\Documents\GitHub\Hash-Function\HashFunction\obj\Debug\HashFunction.
 C:\Users\Ben\Documents\GitHub\Hash-Function\HashFunction\obj\Debug\HashFunction.csproj.CopyComplete
 C:\Users\Ben\Documents\GitHub\Hash-Function\HashFunction\obj\Debug\HashFunction.exe
 C:\Users\Ben\Documents\GitHub\Hash-Function\HashFunction\obj\Debug\HashFunction.pdb
-C:\Users\Ben\Documents\GitHub\Hash-Function\HashFunction\obj\Debug\HashFunction.csproj.CoreCompileInputs.cache

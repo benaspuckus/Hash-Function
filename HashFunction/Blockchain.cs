@@ -18,7 +18,7 @@ namespace HashFunction
         {
             Random rnd = new Random();
 
-            for (var i = 0; i < 10; i++)
+            for (var i = 0; i < 1000; i++)
             {
                 var name = $"user{i}";
                 var userHash = HashFunction.GetHash(name);
@@ -34,7 +34,7 @@ namespace HashFunction
                 Miners.Add(new User(name, userHash, balance));
             }
 
-            for (var i = 0; i < 100; i++)
+            for (var i = 0; i < 10000; i++)
             {
                 var senderIndex = rnd.Next(Users.Count);
                 var receiverIndex = rnd.Next(Users.Count);
