@@ -166,7 +166,7 @@ namespace HashFunction
             var iteration = 0;
             while (PendingTransactions.Count > 1)
             {
-                var transactions = PendingTransactions.Take(10).ToList();
+                var transactions = PendingTransactions.Take(150).ToList();
                 var listOfInvalidTransactions = new List<Transaction>();
 
                 for (var i = 0; i < transactions.Count; i++)
