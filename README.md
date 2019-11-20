@@ -12,6 +12,12 @@ Pirmiausia yra sugeneruojama 1000 user'ų, 10 miner'ų ir sugeneruojamos transak
 
 Kol vyksta kasimas, konsolėje yra matoma likusių transakcijų skaičius, perspėjama jei kas bandė "pervesti" daugiau, nei turėjo ir su kiek iteracijų pavyko iškasti bloką (pradedama nuo 500)
 
+Susitvarkius su visomis transakcijomis yra parodomas visų user'ų ir simuliuotų "minerių" balansas:
+#### Useriai
+![alt text](https://github.com/benaspuckus/Hash-Function/blob/master/Capture2.JPG)
+#### Mineriai
+![alt text](https://github.com/benaspuckus/Hash-Function/blob/master/Capture3.JPG)
+
 # Hash-Function
 
 ## Idėja
