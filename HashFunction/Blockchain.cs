@@ -206,6 +206,7 @@ namespace HashFunction
                 var miner = Miners[minersIndex];
                 CreateTransaction(new Transaction(null, miner, _reward));
                 iteration++;
+                Console.WriteLine($"{PendingTransactions.Count} Pending transactions left");
             }
         }
     }
